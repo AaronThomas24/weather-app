@@ -44,7 +44,7 @@ app.post('/weather', (req, res) => {
             res.status(200).send(response);
         })
         .catch(error => {
-            console.log(error);
+            console.log("this is my error",error);
             res.status(500).send(error);
         })
 })

@@ -26,18 +26,15 @@ const getWeatherInfo = () => {
 
 const createWeatherInfo = (body) => {
     console.log('data recieved', body);
-    // const target = { resolvedAddress, currentDate };
-    // const source = body;
-    // const  returnedTarget = Object.assign(target, source);
-    // console.log('body:', target);
-    // console.log(returnedTarget === target);
+    
     return new Promise(function (resolve, reject) {
-        
-        pool.query(`INSERT INTO weather(resolvedaddress, currentdate) VALUES ($1, $2) RETURNING *`, [ body ], (error, results) => {
+        const {resolvedAddress, currentDate, currentTime, currentTemp, tempMax, tempMin, tempFeels, sunrise, sunset, conditions, icon}=body;
+        console.log("data", resolvedAddress,"+", currentDate);
+        pool.query(`INSERT INTO weather(resolvedaddress, currentdate, currentTime, currentTemp, tempMax, tempMin, tempFeels, sunrise, sunset, conditions, icon) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`, [ resolvedAddress, currentDate, currentTime, currentTemp, tempMax, tempMin, tempFeels, sunrise, sunset, conditions, icon], (error, results) => {
             if (error) {
                 reject(error)
             } else {
-                resolve('results sent')
+                resolve('results sent', results)
                 // resolve(`A new weather had been added: ${results}`)
             }
         })

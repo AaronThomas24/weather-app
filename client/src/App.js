@@ -4,9 +4,6 @@ import SearchWeather from './components/SearchWeather';
 import WeatherGallery from './components/WeatherGallery'
 
 function App() {
-  let [search, setSearch] = useState("");
-  let [data, setData] = useState([]);
-
 
   return (
     <div
