@@ -1,38 +1,51 @@
-/* CSS for weather items */
-.section_temperature{
+// Scss Variables
+$primary-color: black;
+$secondary-color: white;
+$third-color: rgba(0, 0, 0, 0.7);
+
+@mixin temperature {
     position: sticky;
     width: auto;
     padding: 2em;
-    margin:2em;
+    margin: 2em;
 }
-.temperature{
+
+.section_temperature {
+    @include temperature()
+}
+
+.temperature {
     text-align: center;
 }
 
-.section_descriptions {
+@mixin descriptions {
     display: grid;
     grid-template-columns: repeat(3, 2fr);
     gap: 2rem;
     position: sticky;
-    color: white;
+    color: $secondary-color;
     width: auto;
-    margin:1em;
+    margin: 1em;
 }
 
-.section_inputs{
+.section_descriptions {
+    @include descriptions()
+}
+
+.section_inputs {
     position: unset;
 }
 
-.css-b62m3t-container{
+.css-b62m3t-container {
     width: 100%;
-    color: black;
+    color: $primary-color;
 }
 
 h2 {
-    color: white;
+    color: $secondary-color;
 }
 
-.card {
+@mixin quickcard {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -40,10 +53,13 @@ h2 {
     background-color: var(--section-overlay);
     padding: 2rem;
     border-radius: 0.4rem;
-
 }
 
-.description_card-icon {
+.card {
+    @include quickcard()
+}
+
+@mixin card-icon {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -53,20 +69,33 @@ h2 {
     margin-bottom: 12px;
 }
 
-.description_card-icon>small {
+.description_card-icon {
+    @include card-icon()
+}
+
+@mixin capitalize {
     text-transform: capitalize;
 }
 
-.card-suntime{
+.description_card-icon>small {
+    @include capitalize()
+}
+
+@mixin suntime {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: $third-color;
     padding: 2rem;
     border-radius: 0.4rem;
 }
-.card-suntime.description_card-icon{
+
+.card-suntime {
+    @include suntime()
+}
+
+@mixin sun-description {
     width: 100%;
     display: row;
     flex-direction: row;
@@ -74,6 +103,10 @@ h2 {
     justify-content: center;
     gap: 5px;
     margin-bottom: 12px;
+}
+
+.card-suntime.description_card-icon {
+    @include sun-description()
 }
 
 @media screen and (max-width: 1024px) {
